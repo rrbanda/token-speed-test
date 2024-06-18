@@ -2,6 +2,8 @@
 
 This is a simple test to simulate various token speeds for large language models. The goal is to measure the time it takes to generate a single token for a given model. This can be useful for understanding the performance characteristics of different models and for optimizing the performance of models in production.
 
+[![Try with Replit](https://replit.com/badge?caption=Try%20with%20Replit)](https://replit.com/@HunterGerlach/token-speed-test)
+
 ## Usage
 
 Setup your environment:
