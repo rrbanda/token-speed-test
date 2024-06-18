@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: generate-tokens-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: generate-tokens
+        image: image-registry.openshift-image-registry.svc:5000/yourproject/generate-tokens-job:latest
+        args: ["100", "true"]  # Arguments for tokens_per_second and stream
+        volumeMounts:
+        - name: lipsum-volume
+          mountPath: /usr/src/app/lipsum.txt
+          subPath: lipsum.txt
+      restartPolicy: Never
+      volumes:
+      - name: lipsum-volume
+        configMap:
+          name: lipsum-config
+  backoffLimit: 4
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: lipsum-config
+data:
+  lipsum.txt: |
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

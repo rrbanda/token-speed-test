@@ -22,14 +22,34 @@ python token_speed_test.py
 
 Alternatively, you can run the script with specific arguments to set the token speed as well as whether or not the output is streamed:
 
-An example of running the script with a token speed of 400 tokens per second and streaming the output:
+An example of running the scr
 
+
+## Build Image using Podman
+ 
 ```bash
-python token_speed_test.py 400 true
+podman build -t yourusername/generate-tokens-job .
 ```
 
-An example of running the script with a token speed of 100 tokens per second and not streaming the output:
+Push the Image to a Container Registry:
+
 
 ```bash
-python token_speed_test.py 100 false
+docker push yourusername/generate-tokens-job
+```
+
+## Steps to Deploy the Job to a OpenShift Cluster
+
+```bash
+oc apply -f generate-tokens-job.yaml
+```
+
+## Check the Status of the Job:
+
+oc get jobs
+
+## View the Logs of the Job:
+
+```bash
+oc logs job/generate-tokens-job
 ```
