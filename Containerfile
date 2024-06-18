@@ -12,4 +12,4 @@ COPY . .
 # RUN pip install --no-cache-dir -r requirements.txt
 
 # Run the script when the container launches
-ENTRYPOINT ["python", "./generate_tokens.py"]
+ENTRYPOINT ["python", "./token-speed-test.py"]
